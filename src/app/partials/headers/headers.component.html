@@ -1,0 +1,45 @@
+<nav class="bg-red-600 p-4 flex justify-between items-center shadow-md">
+  <!-- Logo + Titre -->
+  <a routerLink="" class="flex items-center space-x-3 hover:opacity-90 transition">
+    <img src="assets/images/Youtube_logo.png" alt="Logo" class="h-8 w-auto" />
+    <span class="text-white font-semibold text-xl">Youtube Clone</span>
+  </a>
+
+  <!-- Boutons -->
+  <div class="space-x-4">
+
+    @if(authService.getCurrentUser()) {
+      <a 
+        routerLink="/search"
+        class="bg-transparent text-white border border-white px-4 py-2 rounded-md hover:bg-white hover:text-red-600 transition-colors duration-200"
+      >
+        Recherche
+      </a>
+
+      <!-- Bouton "Se déconnecter" -->
+      <a 
+        (click)="logout()"
+        class="bg-white text-red-600 px-4 py-2 rounded-md hover:bg-red-700 hover:text-white transition-colors duration-200"
+      >
+        Se déconnecter
+      </a>
+    }
+
+        @if(!authService.getCurrentUser()) {
+      <a 
+        routerLink="/login"
+        class="bg-transparent text-white border border-white px-4 py-2 rounded-md hover:bg-white hover:text-red-600 transition-colors duration-200"
+      >
+        Se connecter
+      </a>
+      <a 
+        routerLink="/register"
+        class="bg-white text-red-600 px-4 py-2 rounded-md hover:bg-red-700 hover:text-white transition-colors duration-200"
+      >
+        S'inscrire
+      </a>
+    }
+
+    
+  </div>
+</nav>

@@ -1,0 +1,41 @@
+<div class="w-64 h-full bg-gray-800 text-white p-6">
+  <h2 class="text-2xl font-bold mb-4 flex items-center justify-between">
+    Playlist
+
+    @if (isLoggedIn) {
+    <button (click)="toggleInput()" class="ml-2 text-white bg-green-600 hover:bg-green-700 px-2 py-1 rounded-full"
+      title="Ajouter une playlist">
+      +
+    </button>
+    }
+  </h2>
+
+  @if (showInput) {
+  <div class="mt-2 space-y-2">
+    <input type="text" [(ngModel)]="newPlaylistName" placeholder="Nom de la playlist"
+      class="w-full p-2 rounded text-black" />
+
+    <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" (click)="createPlaylist()">
+      Créer
+    </button>
+  </div>
+  }
+
+
+  <ul class="space-y-4 mt-4">
+
+    @for (playlist of playlists; track $index){
+    <li class="border-b border-gray-600 pb-4">
+      <h3 class="text-xl font-bold text-white mb-2">{{ playlist.name }}</h3>
+      <ul class="space-y-2 mt-2">
+        @for (video of playlist.videos; track $index){
+        <li class="bg-gray-700 p-2 rounded-md shadow-md hover:bg-gray-600 transition-all">
+          <a href="{{ video.url }}" class="text-sm text-white hover:text-gray-400 font-normal">
+            {{ video.title }}
+          </a>
+        </li>
+        }
+      </ul>
+    </li>
+    }
+  </ul>
